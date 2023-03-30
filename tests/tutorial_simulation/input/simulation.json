@@ -1,0 +1,26 @@
+{
+  "SIMULATION": {
+    "OUTPUT": [
+      "bottom_elevation",
+      "flow_velocity",
+      "friction_chezy",
+      "water_surface",
+      "delta_z",
+      "water_depth",
+      "theta_critical",
+      "trsp_capacity",
+      "aboveground_biomass",
+      "belowground_biomass",
+      "rooting_depth"
+    ],
+    "TIME": {
+      "end": 111600.0,
+      "out": 11160.0,
+      "start": 0.0
+    },
+    "TIMESTEP": {
+      "init": 0.02,
+      "minimum": 0.0001
+    }
+  }
+}

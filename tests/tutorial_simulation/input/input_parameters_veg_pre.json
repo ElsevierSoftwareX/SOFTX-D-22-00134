@@ -1,0 +1,13 @@
+{
+    "measured": [
+        {
+        "file": "discharge_time_series.txt",
+        "Q_morpho": 600,
+        "T_morpho": 18,
+        "T_baseflow": 60,
+        "growing_time":["01.04", "01.10"]    ,
+        "T_steps": 10000,
+        "n_steps": 6
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "water_table": [
+        {
+        "min_n_cells": 10,
+        "min_dist": 40.0,
+        "exp_dist": 2.0,
+        "increase_dist": 5.0
+        }
+    ],
+    "discharges": [
+        {
+        "poly_degree": 4
+        }
+    ],
+    "growth": [
+        {
+        "type": "no_root",
+        "deltat": 1,
+        "logistic": [
+            {
+            "factor_growth_rate": 0.8,
+            "growth_rate": 0.08,
+            "g1": 0.01,
+            "g2": 3, 
+            "decay_rate": 0.1,
+            "d1": 0,
+            "d2": 3.5,
+            "prop_above": 0.5,
+            "prop_below": 0.5,
+            "max_biomass": 1.0
+            }
+        ],
+        "exponential": [
+            {
+            "growth_rate": 0.005
+            }
+        ]
+        }
+    ]
+}

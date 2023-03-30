@@ -1,0 +1,201 @@
+{
+  "SETUP": {
+    "DOMAIN": {
+      "BASEPLANE_2D": {
+        "GEOMETRY": {
+          "REGIONDEF": [
+            {
+              "index": [
+                1
+              ],
+              "name": "bar_dw"
+            },
+            {
+              "index": [
+                2
+              ],
+              "name": "bar_up"
+            },
+            {
+              "index": [
+                3
+              ],
+              "name": "channel"
+            },
+            {
+              "index": [
+                4
+              ],
+              "name": "bank_sx"
+            },
+            {
+              "index": [
+                5
+              ],
+              "name": "bank_dx"
+            }
+          ],
+          "STRINGDEF": [
+            {
+              "name": "inflow",
+              "upstream_direction": "left"
+            },
+            {
+              "name": "outflow",
+              "upstream_direction": "right"
+            },
+            {
+              "name": "inflow_in",
+              "upstream_direction": "right"
+            },
+            {
+              "name": "outflow_in",
+              "upstream_direction": "right"
+            }
+          ],
+          "mesh_file": "mesh_Rhine.2dm"
+        },
+        "HYDRAULICS": {
+          "BOUNDARY": {
+            "STANDARD": [
+              {
+                "discharge_file": "inflow_discharge_flood.txt",
+                "name": "inflow",
+                "slope": 0.002,
+                "string_name": "inflow_in",
+                "type": "uniform_in"
+              },
+              {
+                "name": "outflow",
+                "slope": 0.002,
+                "string_name": "outflow_in",
+                "type": "uniform_out"
+              }
+            ]
+          },
+          "FRICTION": {
+            "default_friction": 30,
+            "type": "strickler"
+          },
+          "INITIAL": {
+            "type": "dry"
+          },
+          "PARAMETER": {
+            "CFL": 0.95,
+            "fluid_density": 1000.0,
+            "max_time_step": 100.0,
+            "minimum_water_depth": 0.01
+          }
+        },
+        "MORPHOLOGY": {
+          "BEDLOAD": {
+            "BOUNDARY": {
+              "STANDARD": [
+                {
+                  "name": "inflow_MOR",
+                  "reference_bed_elevation": 483.5,
+                  "string_name": "inflow",
+                  "type": "equilibrium_in"
+                },
+                {
+                  "name": "outflow_MOR",
+                  "reference_bed_elevation": 479.5,
+                  "string_name": "outflow",
+                  "type": "equilibrium_out"
+                }
+              ]
+            },
+            "DIRECTION": {
+              "LATERAL_SLOPE": {
+                "factor": 1.5
+              }
+            },
+            "FORMULA": {
+              "factor": 0.5,
+              "type": "MPM"
+            }
+          },
+          "BEDMATERIAL": {
+            "FIXED_BED": {
+              "correction_accuracy": 0.001,
+              "max_iteration": 10,
+              "regions": [
+                {
+                  "region_name": "bank_dx",
+                  "z_rel": 0.0
+                },
+                {
+                  "region_name": "bank_sx",
+                  "z_rel": 0.0
+                }
+              ],
+              "type": "region_defined"
+            },
+            "GRAIN_CLASS": {
+              "diameters": [
+                0.08
+              ]
+            }
+          },
+          "INITIAL": {
+            "type": "mesh"
+          },
+          "PARAMETER": {
+            "morphodynamic_start": 0.0,
+            "sediment_density": 2650.0,
+            "sediment_porosity": 0.4
+          }
+        },
+        "VEGETATION": {
+          "INITIAL": {
+            "type": "region_defined",
+            "regions": [
+              {
+                "aboveground_biomass": 0.1,
+                "belowground_biomass": 0.1,
+                "rooting_depth": 0.5,
+                "region_name": "bar_up"
+              },
+              {
+                "aboveground_biomass": 0.1,
+                "belowground_biomass": 0.1,
+                "rooting_depth": 0.5,
+                "region_name": "bar_dw"
+              },
+              {
+                "aboveground_biomass": 0.0,
+                "belowground_biomass": 0.0,
+                "rooting_depth": 0.0,
+                "region_name": "channel"
+              },
+              {
+                "aboveground_biomass": 0.0,
+                "belowground_biomass": 0.0,
+                "rooting_depth": 0.0,
+                "region_name": "bank_sx"
+              },
+              {
+                "aboveground_biomass": 0.0,
+                "belowground_biomass": 0.0,
+                "rooting_depth": 0.0,
+                "region_name": "bank_dx"
+              }
+              ]
+            },
+          "PARAMETER": {
+              "burial_factor": 1,
+              "plant_height_exp": 1.5,
+              "plant_height_fact": 2,
+              "uprooting_factor": 1,
+              "veg_strickler_fact": 12,
+              "veg_theta_critical_fact": 0.02
+          }
+        }
+      },
+      "PHYSICAL_PROPERTIES": {
+        "gravity": 9.81
+      }
+    },
+    "simulation_name": "tutorial_morpho_veg_flood"
+  }
+}
